@@ -9,6 +9,7 @@ import { Book } from '../../interfaces/book-interface';
   styleUrl: './book-card.component.sass'
 })
 export class BookCardComponent {
+
   public book = input.required<Book>();
 
 }

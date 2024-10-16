@@ -1,11 +1,11 @@
-import { Component, Signal, signal, WritableSignal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { BookTableComponent } from './components/book-table/book-table.component';
 import { HttpClient } from '@angular/common/http';
-import { BookCardComponent } from "./components/book-card/book-card.component";
-import { BookService } from './services/book.service';
-import { BooksApiResponse } from './interfaces/book-interface';
+import { Component, Signal, signal, WritableSignal } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RouterOutlet } from '@angular/router';
+import { BookCardComponent } from "./components/book-card/book-card.component";
+import { BookTableComponent } from './components/book-table/book-table.component';
+import { BooksApiResponse } from './interfaces/book-interface';
+import { BookService } from './services/book.service';
 
 @Component({
   selector: 'root',
@@ -16,16 +16,17 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './app.component.sass'
 })
 export class AppComponent {
-  public books: Signal<BooksApiResponse>;
-  public shouldShowSpinner: WritableSignal<boolean> = signal(false);
 
-  constructor(booksSrv: BookService) {
-    this.shouldShowSpinner.set(true);
-    booksSrv.getBooks().subscribe(booksResponse => {
+  public books: Signal<BooksApiResponse>;
+  public shouldShowSpinner: WritableSignal<boolean> = signal(true);
+
+  constructor(
+    booksService: BookService
+  ) {
+    booksService.getBooks().subscribe(booksResponse => {
       this.books = signal(booksResponse);
       this.shouldShowSpinner.set(false);
-      console.clear();
-      console.log(this.books().books);
     });
   }
+
 }
