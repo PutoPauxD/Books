@@ -1,4 +1,5 @@
 export interface BooksApiResponse {
+  actualBook: string;
   headers: string[];
   books: Book[];
 }
