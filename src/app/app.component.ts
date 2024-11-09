@@ -6,11 +6,12 @@ import { BookCardComponent } from "./components/book-card/book-card.component";
 import { BookTableComponent } from './components/book-table/book-table.component';
 import { BooksApiResponse } from './interfaces/book-interface';
 import { BookService } from './services/book.service';
+import { NavbarComponent } from "./components/navbar/navbar.component";
 
 @Component({
   selector: 'root',
   standalone: true,
-  imports: [RouterOutlet, BookTableComponent, BookCardComponent, BookCardComponent, MatProgressSpinnerModule],
+  imports: [RouterOutlet, BookTableComponent, BookCardComponent, BookCardComponent, MatProgressSpinnerModule, NavbarComponent],
   providers: [HttpClient],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
